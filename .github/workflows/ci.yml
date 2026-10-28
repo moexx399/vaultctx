@@ -26,8 +26,12 @@ jobs:
 
   changelog:
     # Every PR must add a changie fragment (`changie new`), unless labelled
-    # skip-changelog (e.g. CI-only or docs typo changes).
-    if: github.event_name == 'pull_request' && !contains(github.event.pull_request.labels.*.name, 'skip-changelog')
+    # skip-changelog (e.g. CI-only or docs typo changes). Dependabot PRs get
+    # theirs from dependabot-changie.yml.
+    if: >-
+      github.event_name == 'pull_request' &&
+      github.event.pull_request.user.login != 'dependabot[bot]' &&
+      !contains(github.event.pull_request.labels.*.name, 'skip-changelog')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
