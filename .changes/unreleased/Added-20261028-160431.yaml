@@ -1,3 +1,0 @@
-kind: Added
-body: 'Initial release: kubectx-style Vault context switching with per-context token caching and token, userpass, ldap, okta, radius, oidc, azure, and generic auth methods.'
-time: 2026-10-28T16:04:31.76575592-05:00
