@@ -22,6 +22,8 @@ changie new
 
 Commit the generated `.changes/unreleased/*.yaml` with your change. CI fails
 pull requests without a fragment unless they carry the `skip-changelog` label.
+Dependabot PRs get a `Dependencies` fragment (a patch bump) pushed to their
+branch automatically by `.github/workflows/dependabot-changie.yml`.
 Do not edit `CHANGELOG.md` by hand; changie generates it.
 
 ## Releasing
