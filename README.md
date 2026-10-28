@@ -48,6 +48,27 @@ Without it, apply a context manually with `eval "$(vaultctx env)"`.
 Each shell keeps its own active context (`$VAULTCTX_CONTEXT`, handy in your
 prompt). New shells start in the context you most recently switched to.
 
+### tmux popup
+
+A popup cannot change the environment of the shell in your pane, so let it
+pick a context with [fzf](https://github.com/junegunn/fzf) and type the
+switch into the active pane, where the shell integration applies it (and any
+login prompt appears). Add to `~/.tmux.conf`:
+
+```tmux
+# prefix + V: pick a Vault context and switch the current pane to it
+bind-key V display-popup -E -w 40% -h 40% \
+  'ctx=$(vaultctx | fzf --prompt "vault> ") && tmux send-keys "vaultctx $ctx" Enter'
+```
+
+This types into the pane, so use it at a shell prompt. To show the last
+context switched to in the status bar (tmux's environment may hold a stale
+`$VAULTCTX_CONTEXT`, hence the `env -u`):
+
+```tmux
+set -g status-right '#(env -u VAULTCTX_CONTEXT vaultctx -c 2>/dev/null)'
+```
+
 ## Usage
 
 ```text
