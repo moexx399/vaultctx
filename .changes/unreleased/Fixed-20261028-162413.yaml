@@ -1,3 +1,0 @@
-kind: Fixed
-body: Homebrew cask uses postflight_steps instead of the deprecated postflight hook, and the README documents trusting the tap (Homebrew 6+).
-time: 2026-10-28T16:24:13.866495777-05:00
