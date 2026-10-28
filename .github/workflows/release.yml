@@ -22,7 +22,7 @@ jobs:
         run: test -f ".changes/${GITHUB_REF_NAME}.md" || (echo "::error::Missing .changes/${GITHUB_REF_NAME}.md; run 'changie batch' first." && exit 1)
       - uses: goreleaser/goreleaser-action@v6
         with:
-          version: "~> v2"
+          version: "~> v2.19"
           args: release --clean --release-notes .changes/${{ github.ref_name }}.md
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

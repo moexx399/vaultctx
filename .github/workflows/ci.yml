@@ -21,7 +21,7 @@ jobs:
       - run: go test -race ./...
       - uses: goreleaser/goreleaser-action@v6
         with:
-          version: "~> v2"
+          version: "~> v2.19"
           args: check
 
   changelog:

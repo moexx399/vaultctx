@@ -33,10 +33,9 @@ release:
 checksum:
   name_template: checksums.txt
 
-# Release notes come from changie (see .github/workflows/release.yml), so
-# GoReleaser's own changelog generation is disabled.
-changelog:
-  disable: true
+# Release notes come from changie via --release-notes (see
+# .github/workflows/release.yml). Do not set changelog.disable: it also skips
+# loading the --release-notes file, leaving the release body empty.
 
 homebrew_casks:
   - name: vaultctx
@@ -49,7 +48,9 @@ homebrew_casks:
       token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
     hooks:
       post:
-        install: |
-          if OS.mac?
-            system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{staged_path}/vaultctx"]
+        # install_steps (GoReleaser >= v2.19) renders Homebrew's
+        # postflight_steps; the older `install` renders deprecated postflight.
+        install_steps: |
+          on_macos do
+            run "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "{{ .StagedPath }}/vaultctx"]
           end

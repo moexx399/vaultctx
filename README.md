@@ -22,7 +22,9 @@ Switched to context "dev".
 ## Install
 
 ```bash
-brew install --cask moexx399/tap/vaultctx
+brew tap moexx399/tap
+brew trust --cask moexx399/tap/vaultctx   # Homebrew 6+ requires trusting non-official taps
+brew install --cask vaultctx
 ```
 
 Or with Go: `go install github.com/moexx399/vaultctx@latest`, or download a

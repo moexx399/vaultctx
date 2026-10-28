@@ -1,0 +1,3 @@
+kind: Fixed
+body: GitHub release notes are now populated from the changie changelog (they were empty in v0.1.0).
+time: 2026-10-28T16:21:28.960681131-05:00
